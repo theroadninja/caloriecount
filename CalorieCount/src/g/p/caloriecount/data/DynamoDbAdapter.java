@@ -11,13 +11,14 @@ import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 public class DynamoDbAdapter {
 	private static final String TAG = "DynamoDbAdapter";
 
-	public static PutItemRequest toPutItemRequest(Object object){
+	public static PutItemRequest toPutItemRequest(String tableName, Object object){
 		
 		if(object == null){
 			return null;
 		}
 		
 		PutItemRequest request = new PutItemRequest();
+		request.setTableName(tableName);
 		
 		for(Method method : object.getClass().getMethods()){
 			if(method.isAnnotationPresent(PayloadField.class)){
@@ -36,7 +37,7 @@ public class DynamoDbAdapter {
 					}else if(String.class.isAssignableFrom(method.getReturnType())){
 						
 						AttributeValue v = new AttributeValue();
-						v.setS(Integer.toString((Integer)method.invoke(object, (Object[])null)));
+						v.setS((String)method.invoke(object, (Object[])null));
 						request.addItemEntry(fieldName, v);
 						
 					}else if(Boolean.TYPE == method.getReturnType()){

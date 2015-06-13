@@ -10,13 +10,13 @@ public class Food {
 	
 	int calories;
 	
-	boolean caloriesUnknown;
+	//boolean caloriesUnknown;
 	
 	public Food(){
 		this.id = null;
 		this.name = null;
 		this.calories = 0;
-		this.caloriesUnknown = false;
+		//this.caloriesUnknown = false;
 	}
 	
 	
@@ -24,7 +24,11 @@ public class Food {
 		this.id = UUID.randomUUID().toString();
 		this.name = name;
 		this.calories = calories;
-		this.caloriesUnknown = caloriesUnknown;
+		//this.caloriesUnknown = caloriesUnknown;
+	}
+	
+	public void setId(){
+		this.id = UUID.randomUUID().toString();
 	}
 	
 	@PayloadField(fieldName = "id")
@@ -57,13 +61,5 @@ public class Food {
 		return this.calories;
 	}
 	
-	@PayloadField(fieldName = "caloriesUnknown")
-	public void setCaloriesUnknown(boolean b){
-		this.caloriesUnknown = b;
-	}
-	
-	@PayloadField(fieldName = "caloriesUnknown")
-	public boolean getCaloriesUnknown(){
-		return this.caloriesUnknown;
-	}
+
 }

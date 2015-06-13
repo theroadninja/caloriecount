@@ -19,7 +19,7 @@ public class ViewCaloriesPage extends LinearLayout {
 		super(context, attrs);
 		super.setOrientation(LinearLayout.VERTICAL);
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		inflater.inflate(R.layout.merge_view_calories, this, true);
+		inflater.inflate(R.layout.merge_view_calories_page, this, true);
 		
 		addButton = (Button)findViewById(R.id.button_add_meal);
 	}
